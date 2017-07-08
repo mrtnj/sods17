@@ -10,9 +10,14 @@ plot(testing_pheno$bvNormUnres1, ridge_testing_pred[[1]], pch = ".", xlab = "Bre
 
 
 ## MCMC plots
+marker_variance_all <- lapply(system("ls bglr_ridge/*_varB.dat", intern = TRUE), scan)
+ridge_chains <- lapply(marker_variance_all, mcmc)
+ridge_chains <- mcmc.list(ridge_chains)
+gelman.diag(ridge_chains, autoburnin = FALSE)
+traceplot(ridge_chains, col = c("black", "red", "blue", "orange"), main = "Trace of marker variance")
 
-genetic_variance <- scan("bglr_ridge/run1_ETA_1_varB.dat")
-intercept <- scan("bglr_ridge/run1_mu.dat")
-par(mfrow = c(1, 2))
-plot(genetic_variance, pch = ".")
-plot(intercept, pch = ".")
+parameters_all <- lapply(system("ls bglr_bayesb/run*_parBayesB.dat", intern = TRUE), read.table, head = TRUE)
+bayesb_chains <- lapply(parameters_all, mcmc)
+bayesb_chains <- mcmc.list(bayesb_chains)
+gelman.diag(bayesb_chains, autoburnin = FALSE)
+
