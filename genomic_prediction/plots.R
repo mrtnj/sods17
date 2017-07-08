@@ -20,4 +20,4 @@ parameters_all <- lapply(system("ls bglr_bayesb/run*_parBayesB.dat", intern = TR
 bayesb_chains <- lapply(parameters_all, mcmc)
 bayesb_chains <- mcmc.list(bayesb_chains)
 gelman.diag(bayesb_chains, autoburnin = FALSE)
-
+plot(bayesb_chains, col = c("black", "red", "blue", "orange"), main = "Trace of marker variance")
