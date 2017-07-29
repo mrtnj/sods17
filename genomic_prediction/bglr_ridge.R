@@ -24,11 +24,6 @@ for (i in 1:n_chains) {
 }
 
 
-genetic_variance_all <- lapply(system("ls bglr_ridge/*_varB.dat", intern = TRUE), scan)
-chains <- lapply(genetic_variance_all, mcmc)
-chains <- mcmc.list(chains)
-gelman.diag(chains, autoburnin = FALSE)
-
 ridge_testing_pred <- lapply(bglr_ridge, function(x) predict(x)[2001:3000])
 lapply(ridge_testing_pred, function(x) cor(x, testing_pheno$phenoNormUnres1))
 lapply(ridge_testing_pred, function(x) cor(x, testing_pheno$bvNormUnres1))
