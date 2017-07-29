@@ -1,4 +1,6 @@
 
+library(coda)
+
 source("data_preparation.R")
 
 ## Prediction plots

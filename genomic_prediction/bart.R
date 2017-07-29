@@ -1,4 +1,6 @@
 
+## Prediction with BART and the bartMachine package.
+
 source("data_preparation.R")
 
 options(java.parameters = "-Xmx8g")

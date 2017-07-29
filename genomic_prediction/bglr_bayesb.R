@@ -1,5 +1,5 @@
 
-## BayesA
+## BayesB with BGLR
 
 source("data_preparation.R")
 
